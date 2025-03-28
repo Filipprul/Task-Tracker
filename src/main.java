@@ -26,38 +26,38 @@ public class main {
                 choice = scanner.nextInt();
                 scanner.nextLine();
             } else {
-                System.out.println("Please enter a valid number.");
+                System.out.print("Please enter a valid number.");
                 scanner.nextLine();
                 continue;
             }
 
             switch (choice){
                 case 1:
-                    // Add a task
+                    manager.add();
                     break;
                 case 2:
-                    // Update a task
+                    manager.update();
                     break;
                 case 3:
-                    // Delete a task
+                    manager.delete();
                     break;
                 case 4:
-                    // Mark the task as in progress
+                    manager.markinprogress();
                     break;
                 case 5:
-                    // Mark the task as done
+                    manager.markdone();
                     break;
                 case 6:
-                    // List all tasks
+                    manager.list();
                     break;
                 case 7:
-                    // List all tasks which are done
+                    manager.taskalldone();
                     break;
                 case 8:
-                    // List all tasks which aren't done
+                    manager.tasknotdone();
                     break;
                 case 9:
-                    // List all tasks which are in progress
+                    manager.taskallinprogress();
                     break;
                 case 10:
                     System.out.println("Exiting...");
