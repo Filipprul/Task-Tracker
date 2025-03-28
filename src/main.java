@@ -1,32 +1,34 @@
 import java.util.Locale;
 import java.util.Scanner;
 
+import static java.lang.System.*;
+
 //Hauptprogramm
 public class main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner((System.in)).useLocale(Locale.US);
+        Scanner scanner = new Scanner((in)).useLocale(Locale.US);
         TaskManager manager = new TaskManager();
 
         while (true){
-            System.out.println("\nHome: ");
-            System.out.println("1. Add a task: ");
-            System.out.println("2. Update a task: ");
-            System.out.println("3. Delete a task:");
-            System.out.println("4. Mark the task as in progeress: ");
-            System.out.println("5. Mark the task as done: ");
-            System.out.println("6. List all tasks: ");
-            System.out.println("7. List all tasks which are done");
-            System.out.println("8. List all tasks which aren't done");
-            System.out.println("9. List all tasks which are in progress");
-            System.out.println("10. Exit");
-            System.out.println("Selection: ");
+            out.println("\nHome: ");
+            out.println("1. Add a task: ");
+            out.println("2. Update a task: ");
+            out.println("3. Delete a task:");
+            out.println("4. Mark the task as in progeress: ");
+            out.println("5. Mark the task as done: ");
+            out.println("6. List all tasks: ");
+            out.println("7. List all tasks which are done");
+            out.println("8. List all tasks which aren't done");
+            out.println("9. List all tasks which are in progress");
+            out.println("10. Exit");
+            out.println("Selection: ");
 
             int choice;
             if (scanner.hasNextInt()){
                 choice = scanner.nextInt();
                 scanner.nextLine();
             } else {
-                System.out.print("Please enter a valid number.");
+                out.print("Please enter a valid number.");
                 scanner.nextLine();
                 continue;
             }
@@ -60,10 +62,10 @@ public class main {
                     manager.taskallinprogress();
                     break;
                 case 10:
-                    System.out.println("Exiting...");
+                    out.println("Exiting...");
                     return;
                 default:
-                    System.out.println("Invalid selection. Please try again.");
+                    out.println("Invalid selection. Please try again.");
             }
         }
     }

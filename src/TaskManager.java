@@ -3,43 +3,49 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static java.lang.System.*;
+
 //Methoden von Aufgaben
 public class TaskManager {
-    Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
+    Scanner scanner = new Scanner(in).useLocale(Locale.US);
     ArrayList<Task> itemList = new ArrayList<>();
+    String titlestring = "Title: ";
+    String description = ", Description: ";
+    String taskid = ", Task ID: ";
+    String taskwithid = "Task with the ID ";
 
     //1
     public void add(){
-        System.out.print("Enter the title of the task: ");
+        out.print("Enter the title of the task: ");
         String title = scanner.nextLine();
 
-        System.out.println("Enter the description of the task: ");
+        out.println("Enter the description of the task: ");
         String description = scanner.nextLine();
 
         itemList.add(new Task(title, description));
         for (Task task : itemList) {
-            System.out.println("Task added successfully! (" + task.getTaskID() + ")");
+            out.println("Task added successfully! (" + task.getTaskID() + ")");
         }
     }
 
     //2
     public void update(){
-        System.out.print("Enter the Task ID to update: ");
+        out.print("Enter the Task ID to update: ");
         int taskID = scanner.nextInt();
 
         for (Task task : itemList){
             if (task.getTaskID() == taskID){
-                System.out.print("Enter the new title of the task: ");
+                out.print("Enter the new title of the task: ");
                 String newtitle = scanner.nextLine();
 
-                System.out.println("Enter the new description of the task: ");
+                out.println("Enter the new description of the task: ");
                 String newdescription = scanner.nextLine();
 
                 task.setTitle(newtitle);
                 task.setDescription(newdescription);
                 task.setCreateAt(LocalDate.now());
 
-                System.out.println("Task updated successfully! (" + task.getTaskID() + ")");
+                out.println("Task updated successfully! (" + task.getTaskID() + ")");
                 return;
             }
         }
@@ -47,50 +53,50 @@ public class TaskManager {
 
     //3
     public void delete(){
-        System.out.print("Enter the task ID to delete: ");
+        out.print("Enter the task ID to delete: ");
         int IDtoDelete = scanner.nextInt();
 
 
         for (Task task : itemList){
             if (task.getTaskID() == IDtoDelete){
                 itemList.remove(IDtoDelete);
-                System.out.println("Task deleted successfully! (" + IDtoDelete + ")");
+                out.println("Task deleted successfully! (" + IDtoDelete + ")");
                 return;
             } else {
-                System.out.println("Task with the ID " + IDtoDelete + " not found!");
+                out.println(taskwithid + IDtoDelete + " not found!");
             }
         }
     }
 
     //4
     public void markinprogress(){
-        System.out.print("Enter the task ID to mark as in progress: ");
+        out.print("Enter the task ID to mark as in progress: ");
         int progressID = scanner.nextInt();
 
         for (Task task : itemList){
             if (task.getTaskID() == progressID){
                 task.setStatus("In Progress");
-                System.out.println("Status was successfully marked as in progress! (" + task.getTaskID() + ")");
+                out.println("Status was successfully marked as in progress! (" + task.getTaskID() + ")");
                 return;
             } else {
-                System.out.println("Task with the ID " + progressID + " not found!  ");
+                out.println(taskwithid + progressID + " not found!  ");
             }
         }
     }
 
     //5
     public void markdone(){
-        System.out.print("Enter the task ID to mark as done: ");
+        out.print("Enter the task ID to mark as done: ");
         int doneID = scanner.nextInt();
 
 
         for (Task task : itemList){
             if (task.getTaskID() == doneID){
                 task.setStatus("Done");
-                System.out.println("Status was successfully marked as done! (" + task.getTaskID() + ")");
+                out.println("Status was successfully marked as done! (" + task.getTaskID() + ")");
                 return;
             } else {
-                System.out.println("Task with the ID " + doneID + " not found!  ");
+                out.println(taskwithid + doneID + " not found!  ");
             }
         }
     }
@@ -98,7 +104,7 @@ public class TaskManager {
     //6
     public void list(){
         for (Task task : itemList){
-            System.out.println("Title: " + task.getTitle() + ", Description: " + task.getDescription() + ", Task ID: " + task.getTaskID() + ", Status: " + task.getStatus());
+            out.println(titlestring + task.getTitle() + description + task.getDescription() + taskid + task.getTaskID() + ", Status: " + task.getStatus());
         }
     }
 
@@ -106,9 +112,9 @@ public class TaskManager {
     public void taskalldone(){
         for (Task task : itemList){
             if (task.getStatus() == "Done") {
-                System.out.println("Title: " + task.getTitle() + ", Description: " + task.getDescription() + ", Task ID: " + task.getTaskID());
+                out.println(titlestring + task.getTitle() + description + task.getDescription() + taskid + task.getTaskID());
             } else {
-                System.out.println("No tasks marked as done found!  ");
+                out.println("No tasks marked as done found!  ");
             }
         }
     }
@@ -117,9 +123,9 @@ public class TaskManager {
     public void tasknotdone(){
         for (Task task : itemList){
             if (task.getStatus() != "Done"){
-                System.out.println("Title: " + task.getTitle() + ", Description: " + task.getDescription() + ", Task ID: " + task.getTaskID());
+                out.println(titlestring + task.getTitle() + description + task.getDescription() + taskid + task.getTaskID());
             } else {
-                System.out.println("No tasks not marked as done found!  ");
+                out.println("No tasks not marked as done found!  ");
             }
         }
     }
@@ -128,9 +134,9 @@ public class TaskManager {
     public void taskallinprogress(){
         for (Task task : itemList){
             if (task.getStatus() == "In Progress") {
-                System.out.println("Title: " + task.getTitle() + ", Description: " + task.getDescription() + ", Task ID: " + task.getTaskID());
+                out.println(titlestring + task.getTitle() + ", Description: " + task.getDescription() + taskid + task.getTaskID());
             } else {
-                System.out.println("No tasks marked as in Progress found!");
+                out.println("No tasks marked as in Progress found!");
             }
         }
     }
